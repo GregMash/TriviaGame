@@ -23,8 +23,8 @@ var questionArr = [
             "C. Woody in 'Toy Story 2' ",
             "D. Tony Stark in 'Iron Man' ",
             "E. Jon Snow in 'Game of Thrones' "],
-        correctChoice: "B",
-        image:  "<img src= '../assets/images/gladiator.png  width='600px'>"
+        correctChoice: "B. Maximus in 'Gladiator' ",
+        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
 
     },
     {
@@ -35,36 +35,12 @@ var questionArr = [
             "C. Woody in 'Toy Story 2' ",
             "D. Tony Stark in 'Iron Man' ",
             "E. Jon Snow in 'Game of Thrones' "],
-        correctChoice: "A",
-        image:  "<img src= '../assets/images/gladiator.png  width='600px'>"
+        correctChoice: "A. Mike in 'Bad Boys 2' ",
+        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
     },
-    {
-        q: "What we do in life, echoes in eternity",
-        answers: [
-            "A. Achilles in 'Troy' ",
-            "B. Maximus in 'Gladiator' ",
-            "C. Woody in 'Toy Story 2' ",
-            "D. Tony Stark in 'Iron Man' ",
-            "E. Jon Snow in 'Game of Thrones' "],
-        correctChoice: "B",
-        image: "TriviaGame/assets/images/gladiator.png)"
-    },
-    {
-        q: "I ain't sayin I shot you, I ain't sayin I didn't shoot you, but damn somebody shot you in the ass",
-        answers: [
-            "A. Mike in 'Bad Boys 2' ",
-            "B. Maximus in 'Gladiator' ",
-            "C. Woody in 'Toy Story 2' ",
-            "D. Tony Stark in 'Iron Man' ",
-            "E. Jon Snow in 'Game of Thrones' "],
-        correctChoice: "A",
-        image: "url(TriviaGame/assets/images/gladiator.png)"
-    },
-];
+]
 
 //==========================================Global Variables=============================================
-
-
 
 //start the scores at 0
 var correctAnswer = 0;
@@ -72,8 +48,9 @@ var incorrectAnswer = 0;
 var noAnswer = 0;
 //start the question index at 0
 questionIndex = 0;
-
+//set the amount of seconds the user has to make a guess
 var time = 16;
+//set this variable to false originally to use for interval functions
 var answered = false;
 
 
@@ -82,7 +59,9 @@ var answered = false;
 //==========================================FUNCTIONS=====================================================
 
 function startGame() {
+
     $('#startButton').on('click', function () {
+        reset();
         $('#startButton').hide();
         $('#directions').hide();
         questionUp();
@@ -92,39 +71,37 @@ function startGame() {
 function questionUp() {
     $('.game').show();
     $('h1').text("Name that Quote!");
+    $('#directions').hide();
+
 
 
     //startTimer();
 
-    if (questionIndex <= questionArr.length - 1) {
-        $('#questions').html("Quote: " + (questionArr[questionIndex].q));
-        $('#answer1').html(questionArr[questionIndex].answers[0]);
-        $('#answer2').html(questionArr[questionIndex].answers[1]);
-        $('#answer3').html(questionArr[questionIndex].answers[2]);
-        $('#answer4').html(questionArr[questionIndex].answers[3]);
-        $('#answer5').html(questionArr[questionIndex].answers[4]);
-    }
-    else {
-        $('#questions').hide();
-        $('.answers').hide();
-        $('#timer').hide();
-        $('h1').html("GAME OVER <br> Final Scores: ");
-    }
+
+    $('#questions').html("Quote: " + (questionArr[questionIndex].q));
+    $('#answer1').html(questionArr[questionIndex].answers[0]);
+    $('#answer2').html(questionArr[questionIndex].answers[1]);
+    $('#answer3').html(questionArr[questionIndex].answers[2]);
+    $('#answer4').html(questionArr[questionIndex].answers[3]);
+    $('#answer5').html(questionArr[questionIndex].answers[4]);
+
+    //else { }
 };
 
 function checkGuess() {
-    if (userGuess === questionArr[questionIndex].correctChoice) {
+    if (userGuess === questionArr[questionIndex].correctChoice.charAt(0)) {
         console.log(questionArr[questionIndex].correctChoice);
         answered = true;
         updateCorrect();
-    } else if (userGuess != questionArr[questionIndex].correctChoice) {
+    } else if (userGuess != questionArr[questionIndex].correctChoice.charAt(0)) {
         answered = true;
         updateIncorrect();
     } else {
         updateUnanswered();
     }
     questionIndex++;
-    showImage();
+    showResult();
+
 
     //stopTimer();
 };
@@ -138,7 +115,7 @@ function updateCorrect() {
 function updateIncorrect() {
     incorrectAnswer++;
     $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
-    $('h1').text("Incorrect...");
+    $('h1').text("Incorrect... The answer was " + questionArr[questionIndex].correctChoice);
 
 };
 
@@ -149,11 +126,42 @@ function updateUnanswered() {
 
 };
 
-function showImage() {
-    $('.game').hide();
-    $('#startButton').show().text('Next Quote...');
-    $('#result').html(questionArr[questionIndex].image);
+function showResult() {
+
+    if (questionIndex <= questionArr.length - 1) {
+        setTimeout(questionUp, 1000 * 5);
+        $('.game').hide();
+        $('#directions').show().text('Next Quote in 5 seconds!');
+    } else {
+        $('#correctGuesses').html("Final Scores: <br> Correct Guesses: " + correctAnswer);
+        $('.answers').hide();
+        $('#timer').hide();
+        $('h1').html("GAME OVER");
+        $('#questions').html(Math.round((correctAnswer / (correctAnswer + incorrectAnswer + noAnswer) * 100) + "%"));
+        $('#startButton').show().text("Play again??");
+
+        //$('#result').html(questionArr[questionIndex].image);
+    }
+
 };
+
+function reset() {
+    correctAnswer = 0;
+    incorrectAnswer = 0;
+    noAnswer = 0;
+    questionIndex = 0;
+    time = 16;
+    answered = false;
+    $('.answers').show();
+    $('#timer').show();
+    $('#unansweredGuesses').html("Unanswered: " + noAnswer);
+    $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
+    $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
+
+}
+
+
+
 
 /*
 function startTimer() {
