@@ -13,110 +13,69 @@ the final page needs to stop the timer, show correct, incorrect, and unanswered 
 
 //==========================================Questions=========================================================
 
-// Here is our question array full of objects of questions. It can be added to or subtracted from at will given the same format.
+// Here is the question array full of objects of questions. It can be added to or subtracted from at will given the same format.
 var questionArr = [
     {
         q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
+        answers: [
+            "A. Achilles in 'Troy' ",
+            "B. Maximus in 'Gladiator' ",
+            "C. Woody in 'Toy Story 2' ",
+            "D. Tony Stark in 'Iron Man' ",
+            "E. Jon Snow in 'Game of Thrones' "],
+        correctChoice: "B",
+        image:  "<img src= '../assets/images/gladiator.png  width='600px'>"
+
+    },
+    {
+        q: "I ain't sayin I shot you, I ain't sayin I didn't shoot you, but damn somebody shot you in the ass",
+        answers: [
+            "A. Mike in 'Bad Boys 2' ",
+            "B. Maximus in 'Gladiator' ",
+            "C. Woody in 'Toy Story 2' ",
+            "D. Tony Stark in 'Iron Man' ",
+            "E. Jon Snow in 'Game of Thrones' "],
+        correctChoice: "A",
+        image:  "<img src= '../assets/images/gladiator.png  width='600px'>"
     },
     {
         q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
+        answers: [
+            "A. Achilles in 'Troy' ",
+            "B. Maximus in 'Gladiator' ",
+            "C. Woody in 'Toy Story 2' ",
+            "D. Tony Stark in 'Iron Man' ",
+            "E. Jon Snow in 'Game of Thrones' "],
+        correctChoice: "B",
+        image: "TriviaGame/assets/images/gladiator.png)"
     },
     {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
-    },
-    {
-        q: "What we do in life, echoes in eternity",
-        a1: "Achilles in 'Troy'",
-        a2: "Maximus in 'Gladiator'",
-        a3: "Woody in 'Toy Story 2'",
-        a4: "Tony Stark in 'Iron Man'",
-        a5: "Jon Snow in 'Game of Thrones'",
-        correctChoice: 2
+        q: "I ain't sayin I shot you, I ain't sayin I didn't shoot you, but damn somebody shot you in the ass",
+        answers: [
+            "A. Mike in 'Bad Boys 2' ",
+            "B. Maximus in 'Gladiator' ",
+            "C. Woody in 'Toy Story 2' ",
+            "D. Tony Stark in 'Iron Man' ",
+            "E. Jon Snow in 'Game of Thrones' "],
+        correctChoice: "A",
+        image: "url(TriviaGame/assets/images/gladiator.png)"
     },
 ];
 
 //==========================================Global Variables=============================================
-$('#directions').html('Directions: <br> When you hit the START! button, a quote from either movies or TV will be diplayed. <br> Click on the correct person and medium for which the quote was said! <br> You will have 15 seconds to make a choice, so think quickly!');
 
 
 
-//start the score at 0
-var score = 0;
+//start the scores at 0
+var correctAnswer = 0;
+var incorrectAnswer = 0;
+var noAnswer = 0;
 //start the question index at 0
 questionIndex = 0;
-timer = 15;
+
+var time = 16;
+var answered = false;
+
 
 
 
@@ -126,47 +85,104 @@ function startGame() {
     $('#startButton').on('click', function () {
         $('#startButton').hide();
         $('#directions').hide();
-        //startTimer();
         questionUp();
     })
-}
+};
 
 function questionUp() {
+    $('.game').show();
+    $('h1').text("Name that Quote!");
+
+
+    //startTimer();
 
     if (questionIndex <= questionArr.length - 1) {
-        document.querySelector('#questions').innerHTML = ("Quote: " + (questionArr[questionIndex].q));
-        document.querySelector('#answer1').innerHTML = ("A. " + (questionArr[questionIndex].a1));
-        document.querySelector('#answer2').innerHTML = ("B. " + (questionArr[questionIndex].a2));
-        document.querySelector('#answer3').innerHTML = ("C. " + (questionArr[questionIndex].a3));
-        document.querySelector('#answer4').innerHTML = ("D. " + (questionArr[questionIndex].a4));
-        document.querySelector('#answer5').innerHTML = ("E. " + (questionArr[questionIndex].a5));
+        $('#questions').html("Quote: " + (questionArr[questionIndex].q));
+        $('#answer1').html(questionArr[questionIndex].answers[0]);
+        $('#answer2').html(questionArr[questionIndex].answers[1]);
+        $('#answer3').html(questionArr[questionIndex].answers[2]);
+        $('#answer4').html(questionArr[questionIndex].answers[3]);
+        $('#answer5').html(questionArr[questionIndex].answers[4]);
     }
     else {
-        document.querySelector('#questions').innerHTML = ("GAME OVER");
+        $('#questions').hide();
+        $('.answers').hide();
+        $('#timer').hide();
+        $('h1').html("GAME OVER <br> Final Scores: ");
     }
 };
 
-function updateScore() {
+function checkGuess() {
     if (userGuess === questionArr[questionIndex].correctChoice) {
-        score++;
-        console.log("YES");
+        console.log(questionArr[questionIndex].correctChoice);
+        answered = true;
+        updateCorrect();
+    } else if (userGuess != questionArr[questionIndex].correctChoice) {
+        answered = true;
+        updateIncorrect();
+    } else {
+        updateUnanswered();
     }
+    questionIndex++;
+    showImage();
+
+    //stopTimer();
 };
 
-function startTimer() {
-    setTimeout(timer, 1500);
-}
+function updateCorrect() {
+    correctAnswer++;
+    $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
+    $('h1').text("CORRECT!");
+};
 
-var userGuess = $('.answers').on('click', function () {
-    if (userGuess == questionArr[questionIndex].correctChoice) {
-        console.log('Yes');
-    } else {
-        console.log("No");
-    }
+function updateIncorrect() {
+    incorrectAnswer++;
+    $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
+    $('h1').text("Incorrect...");
+
+};
+
+function updateUnanswered() {
+    noAnswer++;
+    $('#unansweredGuesses').html("Unanswered: " + noAnswer);
+    $('h1').text("You did not answer in time!!");
+
+};
+
+function showImage() {
+    $('.game').hide();
+    $('#startButton').show().text('Next Quote...');
+    $('#result').html(questionArr[questionIndex].image);
+};
+
+/*
+function startTimer() {
+    var countdown = setInterval(timer, 1000);
+    time = time - 1;
+    $('#timer').html("Time Remaining: " + time + " seconds");
+};
+
+function stopTimer() {
+    clearInterval(countdown);
+    $('#timer').html("Time Remaining: " + time + " seconds");
+
+};
+*/
+//==============================Main Process=================================================
+
+$('#directions').html('Directions: <br> When you hit the START! button, a quote from either movies or TV will be diplayed. <br> Click on the correct person and title for which the quote was said! <br> You will only have 15 seconds to make a choice, so think quickly!');
+$('#correctGuesses').html("Correct Guesses: " + correctAnswer);
+$('#incorrectGuesses').html("Inorrect Guesses: " + incorrectAnswer);
+$('#unansweredGuesses').html("Unanswered: " + noAnswer);
+startGame();
+
+
+
+$(document).on('click', 'p', function () {
+    userGuess = $(this).text();
+    userGuess = userGuess.charAt(0);
+    console.log(userGuess);
+    checkGuess();
 });
 
 
-
-//==============================Main Process=================================================
-
-startGame();

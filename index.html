@@ -12,23 +12,38 @@
 
 <body>
 
-    <h1>title</h1>
+    <h1>Name that Quote!</h1>
 
-    <p id = 'timer'>Time Left:</p>
+    <hr>
 
-    <p id = 'directions'></p>
-    <button id = 'startButton'>START!</button>
 
-    <p id='questions'></p>
+    <div id='directions'></div>
+    <button id='startButton'>START!</button>
 
-    <div class='answers'>
-        <p id='answer1'></p>
-        <p id='answer2'></p>
-        <p id='answer3'></p>
-        <p id='answer4'></p>
-        <p id='answer5'></p>
+    <img id = 'resultIMG'>
+
+    <div class="game">
+
+        <div id='questions'></div>
+
+        <div class='answers'>
+            <p id="answer1"></p>
+            <p id="answer2"></p>
+            <p id="answer3"></p>
+            <p id="answer4"></p>
+            <p id="answer5"></p>
+        </div>
+
+        <hr>
+
+        <div class="scoreboard">
+            <div id="correctGuesses"></div>
+            <div id="incorrectGuesses"></div>
+            <div id="unansweredGuesses"></div>
+            <div id='timer'>Time Remaining: </div>
+        </div>
+
     </div>
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
