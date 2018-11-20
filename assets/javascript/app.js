@@ -79,6 +79,7 @@ var questionArr = [
         correctChoice: "B. Dark Helmet in 'Space Balls' ",
         image: "./assets/images/spaceballs.png"
     }
+    
 ]
 
 //========================================================= Global Variables =====================================================
@@ -154,7 +155,8 @@ function updateCorrect() {
     correctAnswer++;
     $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
     $('h1').text("CORRECT!");
-    //questionIndex++;
+    //showResult();
+    questionIndex++;
 };
 
 //This function adds a + 1 score to incorrect and moves the question index to the next question
@@ -162,7 +164,8 @@ function updateIncorrect() {
     incorrectAnswer++;
     $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
     $('h1').text("Incorrect... The answer was " + questionArr[questionIndex].correctChoice);
-    //questionIndex++;
+    //showResult();
+    questionIndex++;
 };
 
 //This function adds a + 1 score to unanswered questions and moves the question index to the next question
@@ -170,7 +173,8 @@ function updateUnanswered() {
     noAnswer++;
     $('#unansweredGuesses').html("Unanswered: " + noAnswer);
     $('h1').text("You did not answer in time! The correct answer was: " + questionArr[questionIndex].correctChoice);
-    //questionIndex++;
+    //showResult();
+    questionIndex++;
 };
 
 //This function has the short pause between questions, shows and hides appropriate content to the user
@@ -180,16 +184,16 @@ function showResult() {
         setTimeout(questionUp, 1000 * 5);
         $('.game').hide();
         $('#directions').show().text('Next Quote incoming!');
-        $('#resultIMG').attr('src', questionArr[questionIndex].image);
+        $('#resultIMG').attr('src', questionArr[questionIndex -1].image);
         $('#resultIMG').show();
-        questionIndex++;
+        //questionIndex++;
     } else {
         setTimeout(finalScore, 1000 * 4);
         $('.game').hide();
         $('#directions').show().text("All Done! Let's see how you did!");
-        $('#resultIMG').attr('src', questionArr[questionIndex].image);
+        $('#resultIMG').attr('src', questionArr[questionIndex -1].image);
         $('#resultIMG').show();
-        questionIndex++;
+        //questionIndex++;
     }
 };
 
