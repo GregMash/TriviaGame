@@ -22,7 +22,7 @@ var questionArr = [
             "D. Hansel in 'Zoolander' ",
             "E. Gary Bertier in 'Remember the Titans' "],
         correctChoice: "A. Mike Lowrey in 'Bad Boys 2' ",
-        image: "../images/gladiator.png"
+        image: "./assets/images/bad-boys-2.png"
     },
     {
         q: "I want some fancy sauce",
@@ -33,7 +33,7 @@ var questionArr = [
             "D. Derek Zoolander in 'Zoolander' ",
             "E. Ron Burgundy in 'Anchorman' "],
         correctChoice: "C. Brennon in 'Step Brothers' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
+        image: "./assets/images/step-brothers.png"
     },
     {
         q: "Wilson!!! Come back!",
@@ -44,7 +44,7 @@ var questionArr = [
             "D. Richard Phillips in 'Captain Phillips' ",
             "E. Chris Gardener in 'The Pursuit of Happyness' "],
         correctChoice: "C. Chuck Noland in 'Cast Away' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
+        image: "./assets/images/cast-away.png"
     },
     {
         q: "Friends don't lie.",
@@ -55,7 +55,7 @@ var questionArr = [
             "D. Sterling Archer in 'Archer' ",
             "E. Eleven in 'Stranger Things' "],
         correctChoice: "E. Eleven in 'Stranger Things' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
+        image: "./assets/images/stranger-things.png"
     },
     {
         q: "I am not in danger, I AM the danger.",
@@ -66,7 +66,7 @@ var questionArr = [
             "D. Walter White in 'Breaking Bad' ",
             "E. Will in 'Stranger Things' "],
         correctChoice: "D. Walter White in 'Breaking Bad' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
+        image: "./assets/images/breaking-bad.png"
     },
     {
         q: "We are gonna have to go right to 'Ludacris Speed' ",
@@ -77,7 +77,7 @@ var questionArr = [
             "D. Rod Kimble in 'Hot Rod' ",
             "E. Randy Marsh in 'South Park' "],
         correctChoice: "B. Dark Helmet in 'Space Balls' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
+        image: "./assets/images/spaceballs.png"
     }
 ]
 
@@ -117,6 +117,7 @@ function startGame() {
 //This function will hide the appropriate html attributes, show a question, and reset the timer and then start it again
 function questionUp() {
     $('.game').show();
+    $('#resultIMG').hide();
     $('h1').text("Name that Quote!");
     $('#directions').hide();
     resetTimer();
@@ -153,7 +154,7 @@ function updateCorrect() {
     correctAnswer++;
     $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
     $('h1').text("CORRECT!");
-    questionIndex++;
+    //questionIndex++;
 };
 
 //This function adds a + 1 score to incorrect and moves the question index to the next question
@@ -161,15 +162,15 @@ function updateIncorrect() {
     incorrectAnswer++;
     $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
     $('h1').text("Incorrect... The answer was " + questionArr[questionIndex].correctChoice);
-    questionIndex++;
+    //questionIndex++;
 };
 
 //This function adds a + 1 score to unanswered questions and moves the question index to the next question
 function updateUnanswered() {
     noAnswer++;
     $('#unansweredGuesses').html("Unanswered: " + noAnswer);
-    $('h1').text("You did not answer in time!!");
-    questionIndex++;
+    $('h1').text("You did not answer in time! The correct answer was: " + questionArr[questionIndex].correctChoice);
+    //questionIndex++;
 };
 
 //This function has the short pause between questions, shows and hides appropriate content to the user
@@ -178,17 +179,23 @@ function showResult() {
     if (questionIndex <= questionArr.length - 1) {
         setTimeout(questionUp, 1000 * 5);
         $('.game').hide();
-        $('#directions').show().text('Next Quote in 5 seconds!');
+        $('#directions').show().text('Next Quote incoming!');
         $('#resultIMG').attr('src', questionArr[questionIndex].image);
+        $('#resultIMG').show();
+        questionIndex++;
     } else {
         setTimeout(finalScore, 1000 * 4);
         $('.game').hide();
         $('#directions').show().text("All Done! Let's see how you did!");
+        $('#resultIMG').attr('src', questionArr[questionIndex].image);
+        $('#resultIMG').show();
+        questionIndex++;
     }
 };
 
 //This is the final function of the game that displays the percentage of correct questions and totals, and then gives the user the option to play again
 function finalScore() {
+    $('#resultIMG').hide();
     $('.game').show();
     $('#directions').hide();
     $('#correctGuesses').html("Final Scores: <br> Correct Guesses: " + correctAnswer);

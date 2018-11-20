@@ -17,7 +17,10 @@ h1 {
 #directions {
     font-size: 25px;
 }
+
 #startButton {
+    overflow: auto;
+    margin: auto;
     font-size: 25px;
 }
 
@@ -34,4 +37,10 @@ p {
 
 p:hover {
     background-color: rgb(245, 154, 112);
+}
+
+img {
+    overflow: auto;
+    margin: auto;
+    width: 600px;
 }
