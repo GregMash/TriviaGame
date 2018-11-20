@@ -11,8 +11,7 @@ var questionArr = [
             "D. Tony Stark in 'Iron Man' ",
             "E. Jon Snow in 'Game of Thrones' "],
         correctChoice: "B. Maximus in 'Gladiator' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
-
+        image: "./assets/images/gladiator.png"
     },
     {
         q: "I ain't sayin I shot you, I ain't sayin I didn't shoot you, but damn somebody shot you in the ass!",
@@ -23,7 +22,7 @@ var questionArr = [
             "D. Hansel in 'Zoolander' ",
             "E. Gary Bertier in 'Remember the Titans' "],
         correctChoice: "A. Mike Lowrey in 'Bad Boys 2' ",
-        image: "<img src= '../assets/images/gladiator.png  width='600px'>"
+        image: "../images/gladiator.png"
     },
     {
         q: "I want some fancy sauce",
@@ -50,7 +49,7 @@ var questionArr = [
     {
         q: "Friends don't lie.",
         answers: [
-            "A. Annie in 'Bridesmaids' ",
+            "A. Tina in 'Bob's Burgers ",
             "B. Marty Byrde in 'Ozark' ",
             "C. Towelie in 'South Park' ",
             "D. Sterling Archer in 'Archer' ",
@@ -82,7 +81,7 @@ var questionArr = [
     }
 ]
 
-//========================================== Global Variables =============================================
+//========================================================= Global Variables =====================================================
 
 //start the scores at 0
 var correctAnswer = 0;
@@ -96,21 +95,26 @@ var intervalID;
 //set this variable to false originally to use for interval functions
 var answered = false;
 
+var imgDisplay = [];
+imgDisplay.src = questionArr[questionIndex].image;
 
 
 
-//========================================== FUNCTIONS =====================================================
+//================================================= FUNCTIONS ===================================================================
 
+//This function will start the game and reset it if it has already been played
 function startGame() {
-
+    $('p').hide();
     $('#startButton').on('click', function () {
         reset();
+        $('p').show();
         $('#startButton').hide();
         $('#directions').hide();
         questionUp();
     })
 };
 
+//This function will hide the appropriate html attributes, show a question, and reset the timer and then start it again
 function questionUp() {
     $('.game').show();
     $('h1').text("Name that Quote!");
@@ -125,6 +129,7 @@ function questionUp() {
     $('#answer5').html(questionArr[questionIndex].answers[4]);
 };
 
+//This function takes the user input and checks to see if it matches the correct answer and then takes the next appropriate action 
 function checkGuess() {
     if (userGuess === questionArr[questionIndex].correctChoice.charAt(0)) {
         answered = true;
@@ -143,6 +148,7 @@ function checkGuess() {
     }
 };
 
+//This function adds a + 1 score to correct and moves the question index to the next question
 function updateCorrect() {
     correctAnswer++;
     $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
@@ -150,6 +156,7 @@ function updateCorrect() {
     questionIndex++;
 };
 
+//This function adds a + 1 score to incorrect and moves the question index to the next question
 function updateIncorrect() {
     incorrectAnswer++;
     $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
@@ -157,6 +164,7 @@ function updateIncorrect() {
     questionIndex++;
 };
 
+//This function adds a + 1 score to unanswered questions and moves the question index to the next question
 function updateUnanswered() {
     noAnswer++;
     $('#unansweredGuesses').html("Unanswered: " + noAnswer);
@@ -164,12 +172,14 @@ function updateUnanswered() {
     questionIndex++;
 };
 
+//This function has the short pause between questions, shows and hides appropriate content to the user
 function showResult() {
 
     if (questionIndex <= questionArr.length - 1) {
         setTimeout(questionUp, 1000 * 5);
         $('.game').hide();
         $('#directions').show().text('Next Quote in 5 seconds!');
+        $('#resultIMG').attr('src', questionArr[questionIndex].image);
     } else {
         setTimeout(finalScore, 1000 * 4);
         $('.game').hide();
@@ -177,6 +187,7 @@ function showResult() {
     }
 };
 
+//This is the final function of the game that displays the percentage of correct questions and totals, and then gives the user the option to play again
 function finalScore() {
     $('.game').show();
     $('#directions').hide();
@@ -188,6 +199,7 @@ function finalScore() {
     $('#startButton').show().text("Play again??");
 }
 
+//This function resets the parameters for the game sho it can be played more times without reloading the page
 function reset() {
     correctAnswer = 0;
     incorrectAnswer = 0;
@@ -202,13 +214,15 @@ function reset() {
     $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
 }
 
-//=============================== Time/Interval Functions ===============================================
+//============================================ Time/Interval Functions =====================================================
 
+//This function clears the interval so it cannot be manipulated twice and then starts it
 function startTimer() {
     clearInterval(intervalID);
     intervalID = setInterval(decrement, 1000);
 };
 
+//This function holds the decrement and calls appropriate functions if the user runs out of time on a question
 function decrement() {
     time--;
     if (time === 0) {
@@ -219,26 +233,34 @@ function decrement() {
     $('#timer').html("Time Remaining: " + time + " seconds");
 };
 
+//This function stops the timer
 function stopTimer() {
     clearInterval(intervalID);
     $('#timer').html("Time Remaining: " + time + " seconds");
 };
 
+// This resets the timer, necessary for each question
 function resetTimer() {
     time = 21;
 };
 
-//============================== Main Process =================================================
+//==================================================== Main Process =========================================================
 
+
+//These set up the html on our page dynamically
 $('#directions').html('Directions: <br> When you hit the START! button, a quote from either movies or TV will be diplayed. <br> Click on the correct character and title for which the quote was said! <br> You will only have 20 seconds to make a choice, so think quickly!');
 $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
 $('#incorrectGuesses').html("Inorrect Guesses: " + incorrectAnswer);
 $('#unansweredGuesses').html("Unanswered: " + noAnswer);
+
+//Calls for the game to start
 startGame();
 
+//This is the main click function which lets the user click anywhere on the document 
+//but only allows a function to happen if appropriate content is clicked
+//Then it determines the userGuess by matching the first letter of their choice with the first letter of the correct answer
 $(document).on('click', 'p', function () {
     userGuess = $(this).text();
     userGuess = userGuess.charAt(0);
-    console.log(userGuess);
     checkGuess();
 });

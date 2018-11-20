@@ -1,7 +1,37 @@
-.scoreboard {
+body {
+    text-align: center;
     width: 100%;
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(18, 239, 247);
 }
 
-#answers {
-    
+h1 {
+    font-size: 55px;
+}
+
+.game {
+    font-size: 25px;
+    padding: 5%;
+}
+#directions {
+    font-size: 25px;
+}
+#startButton {
+    font-size: 25px;
+}
+
+.answers {
+    text-align: center;
+    overflow: auto;
+}
+
+p {
+    padding: 1%;
+    margin: 2%;
+    border: 2px solid black;
+}
+
+p:hover {
+    background-color: rgb(245, 154, 112);
 }
