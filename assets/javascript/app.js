@@ -96,8 +96,6 @@ var intervalID;
 //set this variable to false originally to use for interval functions
 var answered = false;
 
-var imgDisplay = [];
-imgDisplay.src = questionArr[questionIndex].image;
 
 
 
@@ -155,7 +153,6 @@ function updateCorrect() {
     correctAnswer++;
     $('#correctGuesses').html("Correct Guesses: " + correctAnswer);
     $('h1').text("CORRECT!");
-    //showResult();
     questionIndex++;
 };
 
@@ -164,7 +161,6 @@ function updateIncorrect() {
     incorrectAnswer++;
     $('#incorrectGuesses').html("Incorrect Guesses: " + incorrectAnswer);
     $('h1').text("Incorrect... The answer was " + questionArr[questionIndex].correctChoice);
-    //showResult();
     questionIndex++;
 };
 
@@ -173,7 +169,6 @@ function updateUnanswered() {
     noAnswer++;
     $('#unansweredGuesses').html("Unanswered: " + noAnswer);
     $('h1').text("You did not answer in time! The correct answer was: " + questionArr[questionIndex].correctChoice);
-    //showResult();
     questionIndex++;
 };
 
@@ -186,14 +181,12 @@ function showResult() {
         $('#directions').show().text('Next Quote incoming!');
         $('#resultIMG').attr('src', questionArr[questionIndex -1].image);
         $('#resultIMG').show();
-        //questionIndex++;
     } else {
         setTimeout(finalScore, 1000 * 4);
         $('.game').hide();
         $('#directions').show().text("All Done! Let's see how you did!");
         $('#resultIMG').attr('src', questionArr[questionIndex -1].image);
         $('#resultIMG').show();
-        //questionIndex++;
     }
 };
 
