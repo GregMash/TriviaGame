@@ -14,7 +14,7 @@ The user will run through a series of movie/tv related questions that render one
 
 ## Hosted on GitHub
 
-[App](https://gregmash.github.io/TriviaGame/)
+[App](https://gregmash.github.io/trivia-game/)
 
 ## Technologies utilized
  - HTML
